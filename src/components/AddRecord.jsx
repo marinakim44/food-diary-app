@@ -1,21 +1,29 @@
 import { useState } from "react";
+import axios from "axios";
 
-export default function AddRecord({ records, setRecords }) {
+export default function AddRecord({ userId, records, setRecords }) {
   // TODO: check on page load if user is logged in or not
 
-  const [newRecord, setNewRecord] = useState({});
+  const [newRecord, setNewRecord] = useState();
   const [recordType, setRecordType] = useState("food");
 
-  const addRecord = () => {
-    console.log("adding record...");
+  const addRecord = async () => {
+    console.log("adding record...", userId);
     const recordToSave = {
-      ...newRecord,
-      id: records.length + 1,
+      userId: userId,
       timestamp: new Date().getTime(),
-      type: recordType,
+      recordType: recordType,
+      notes: newRecord,
     };
     setRecords([...records, recordToSave]);
-    setNewRecord({ notes: "" });
+    setNewRecord();
+
+    // TODO: call API to save record to DynamoDB
+    const addRecordResponse = await axios.post(
+      "http://localhost:4000/api/create",
+      recordToSave
+    );
+    console.log("addRecordResponse", addRecordResponse);
   };
 
   const addRecordOnEnter = (e) => {
@@ -39,11 +47,9 @@ export default function AddRecord({ records, setRecords }) {
         <input
           placeholder="Write here..."
           className="p-2 rounded border-[1px] border-gray-500 w-full"
-          onChange={(e) =>
-            setNewRecord({ ...newRecord, notes: e.target.value })
-          }
+          onChange={(e) => setNewRecord(e.target.value)}
           onKeyUp={addRecordOnEnter}
-          value={newRecord?.notes || ""}
+          value={newRecord || ""}
         />
         <button
           onClick={addRecord}

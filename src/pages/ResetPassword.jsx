@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { resetPassword } from "../auth/forgotPassword";
+import { resetPassword } from "../auth/resetPassword";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

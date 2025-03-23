@@ -6,6 +6,7 @@ import SignUp from "./pages/SignUp.jsx";
 import ConfirmSignUp from "./pages/ConfirmSignUp.jsx";
 import ForgotPassword from "./pages/ForgotPassword.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
+import UserProfile from "./pages/UserProfile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/reset_password",
     element: <ResetPassword />,
+  },
+  {
+    path: "/my_profile",
+    element: <UserProfile />,
   },
 ]);
 

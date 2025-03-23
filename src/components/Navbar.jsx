@@ -25,14 +25,18 @@ export default function Navbar() {
   };
 
   return (
-    <div className="bg-sky-500 text-white min-h-[50px] flex items-center justify-between px-10">
+    <div className="bg-sky-500 text-white min-h-[50px] flex items-center justify-between px-5">
       <div id="logo" className="font-bold" onClick={() => navigate("/")}>
         Logo
       </div>
       <div>
         {user && user.email_verified && (
-          <div>
+          <div className="flex items-center gap-5">
             <button onClick={logoutUser}>Logout</button>
+            <div
+              onClick={() => navigate("/my_profile")}
+              className="w-10 h-10 rounded-full bg-sky-200 border-2 border-white"
+            ></div>
           </div>
         )}
       </div>
