@@ -21,6 +21,7 @@ export default function Navbar() {
   const logoutUser = () => {
     console.log("logging out...");
     logout();
+    navigate("/login");
   };
 
   return (

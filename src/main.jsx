@@ -3,8 +3,9 @@ import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import SignUp from "./pages/SignUp.jsx";
-import ResetPassword from "./pages/ResetPassword.jsx";
 import ConfirmSignUp from "./pages/ConfirmSignUp.jsx";
+import ForgotPassword from "./pages/ForgotPassword.jsx";
+import ResetPassword from "./pages/ResetPassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/confirm_signup",
     element: <ConfirmSignUp />,
+  },
+  {
+    path: "/forgot_password",
+    element: <ForgotPassword />,
   },
   {
     path: "/reset_password",
