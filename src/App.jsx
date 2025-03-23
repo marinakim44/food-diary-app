@@ -1,10 +1,26 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Record from "./components/Record";
 import AddRecord from "./components/AddRecord";
 import Navbar from "./components/Navbar";
+import { getCurrentUser } from "./auth/getUser";
+import { useNavigate } from "react-router-dom";
 
 function App() {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getCurrentUser()
+      .then((user) => {
+        setUser(user);
+      })
+      .catch((err) => {
+        console.log("get user error", err);
+        navigate("/login");
+      });
+  }, []);
+
   const [records, setRecords] = useState([]);
 
   const [isEdit, setIsEdit] = useState(false);
